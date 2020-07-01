@@ -15,4 +15,42 @@ $very-dark-blue: hsl(255, 11%, 22%);
 $very-dark-violet: hsl(260, 8%, 14%);
 $primary: $cyan;
 
+$button-text-decoration: none;
+
 @import '../node_modules/bulma/bulma.sass';
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    text-align: center;
+    background-color: $dark-violet;
+    margin: 10px 20px;
+    padding: 20px 30px;
+    border-radius: 15px;
+
+    .navbar-start {
+      border-bottom: 1px solid rgba(191, 191, 191, 0.18);
+      padding-bottom: 20px;
+    }
+
+    .navbar-end {
+      padding-top: 20px;
+    }
+
+    .navbar-item {
+      color: white;
+      padding: 15px;
+    }
+
+    .button {
+      width: 100%;
+
+      &.is-text {
+        color: white;
+
+        &:hover {
+          color: $text;
+        }
+      }
+    }
+  }
+}

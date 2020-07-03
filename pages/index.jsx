@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import lscache from 'lscache'
 
+import Hero from '../components/Hero'
+
 const initialList = lscache.get('list') ? lscache.get('list') : []
 
 function Index() {
@@ -43,6 +45,7 @@ function Index() {
 
   return (
     <>
+      <Hero />
       <section className="section">
         <div className="container">
           <form onSubmit={handleSubmit}>

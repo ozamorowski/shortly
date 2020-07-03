@@ -19,6 +19,21 @@ $button-text-decoration: none;
 
 @import '../node_modules/bulma/bulma.sass';
 
+.hero {
+  h1 {
+    font-size: 3.6em;
+    padding-top: 0.8em;
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+    line-height: 4rem;
+    color: $grey-darker;
+  }
+
+  .hero-image {
+    background-image: url(../public/illustration-working.svg);
+  }
+}
+
 @import 'footer';
 
 @media screen and (max-width: 1023px) {

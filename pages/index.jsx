@@ -43,6 +43,26 @@ function Index() {
     setError(false)
   }
 
+  const handleCopy = (hashid) => {
+    const textArea = document.getElementById('textarea-' + hashid)
+    const button = document.getElementById('button-' + hashid)
+    textArea.focus()
+    textArea.select()
+
+    try {
+      const successful = document.execCommand('copy')
+
+      if (successful) {
+        button.textContent = 'Copied!'
+        setTimeout(() => {
+          button.textContent = 'Copy'
+        }, 1000)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <>
       <Hero />
@@ -73,6 +93,20 @@ function Index() {
                 <a target="_blank" href={`https://rel.ink/${hashid}`}>
                   https://rel.ink/{hashid}
                 </a>
+                <textarea
+                  id={'textarea-' + hashid}
+                  cols="4"
+                  rows="1"
+                  value={`https://rel.ink/${hashid}`}
+                  className="is-sr-only"
+                  readOnly
+                ></textarea>
+                <button
+                  id={'button-' + hashid}
+                  onClick={() => handleCopy(hashid)}
+                >
+                  Copy
+                </button>
               </li>
             ))}
           </ul>

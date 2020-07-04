@@ -32,6 +32,7 @@ function Index() {
       })
 
     if (result) {
+      // TODO: return if object already exist in list
       setList([result, ...list])
       setUrl('')
       setLoading(false)
@@ -67,6 +68,11 @@ function Index() {
     }
   }
 
+  // TODO: remove item from list
+  const handleDelete = (index) => {
+    console.log('TODO: handle remove')
+  }
+
   return (
     <>
       <Hero />
@@ -82,7 +88,9 @@ function Index() {
                 onChange={handleChange}
                 className={`input is-medium ${error ? 'is-danger' : ''}`}
               />
-              {error && <p class="help is-danger">Please enter valid URL</p>}
+              {error && (
+                <p className="help is-danger">Please enter valid URL</p>
+              )}
             </div>
             <div className="control">
               <a
@@ -100,37 +108,35 @@ function Index() {
           {list.map(({ url, hashid }, index) => (
             <div
               key={index + 1}
-              className="columns is-vcentered has-background-white px-4 py-4 my-4"
+              className="results columns is-vcentered has-background-white px-4 py-4 my-4"
             >
               <div className="column">
                 <h4 className="is-size-4">{url}</h4>
               </div>
-              <div className="column has-text-right">
-                <div>
-                  <a
-                    target="_blank"
-                    href={`https://rel.ink/${hashid}`}
-                    className="button is-text"
-                  >
-                    https://rel.ink/{hashid}
-                  </a>
+              <div className="column is-flex pull-right is-vcentered">
+                <a target="_blank" href={`https://rel.ink/${hashid}`}>
+                  https://rel.ink/{hashid}
+                </a>
 
-                  <button
-                    id={'button-' + hashid}
-                    onClick={() => handleCopy(hashid)}
-                    className="button is-primary ml-4"
-                  >
-                    Copy
-                  </button>
-                  <textarea
-                    id={'textarea-' + hashid}
-                    cols="4"
-                    rows="1"
-                    value={`https://rel.ink/${hashid}`}
-                    className="is-sr-only"
-                    readOnly
-                  ></textarea>
-                </div>
+                <button
+                  id={'button-' + hashid}
+                  onClick={() => handleCopy(hashid)}
+                  className="button is-primary ml-4"
+                >
+                  Copy
+                </button>
+                <button
+                  className="delete is-invisible ml-3"
+                  onClick={() => handleDelete(index)}
+                ></button>
+                <textarea
+                  id={'textarea-' + hashid}
+                  cols="4"
+                  rows="1"
+                  value={`https://rel.ink/${hashid}`}
+                  className="is-sr-only"
+                  readOnly
+                ></textarea>
               </div>
             </div>
           ))}

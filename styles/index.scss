@@ -57,6 +57,17 @@ form {
   }
 }
 
+.results {
+  .is-flex.pull-right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &:hover .delete {
+    visibility: visible !important;
+  }
+}
+
 @import 'footer';
 
 @media screen and (max-width: 1023px) {

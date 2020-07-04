@@ -15,11 +15,16 @@ $very-dark-blue: hsl(255, 11%, 22%);
 $very-dark-violet: hsl(260, 8%, 14%);
 $primary: $cyan;
 
+$dark: $very-dark-violet;
+
+$control-radius: 10px;
 $button-text-decoration: none;
 
 @import '../node_modules/bulma/bulma.sass';
 
 .hero {
+  margin-bottom: 8em;
+
   h1 {
     font-size: 3.6em;
     padding-top: 0.8em;
@@ -31,6 +36,24 @@ $button-text-decoration: none;
 
   .hero-image {
     background-image: url(../public/illustration-working.svg);
+  }
+}
+
+.form-container {
+  transform: translate(0, -4.3em);
+}
+
+form {
+  padding: 3em 4em;
+  border-radius: 10px;
+  background-image: url(../images/bg-shorten-desktop.svg);
+  background-color: $dark-violet;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .help {
+    position: fixed;
   }
 }
 

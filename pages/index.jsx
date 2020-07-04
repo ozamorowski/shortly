@@ -54,8 +54,12 @@ function Index() {
 
       if (successful) {
         button.textContent = 'Copied!'
+        button.classList.add('is-dark')
+        button.classList.remove('is-primary')
         setTimeout(() => {
           button.textContent = 'Copy'
+          button.classList.remove('is-dark')
+          button.classList.add('is-primary')
         }, 1000)
       }
     } catch (err) {
@@ -66,54 +70,72 @@ function Index() {
   return (
     <>
       <Hero />
-      <section className="section">
-        <div className="container">
-          <form onSubmit={handleSubmit}>
-            <input
-              placeholder="http://"
-              type="url"
-              name="url"
-              value={url}
-              onChange={handleChange}
-              className="input"
-            />
-            <a
-              type="submit"
-              onClick={handleSubmit}
-              className={`button is-primary ${loading ? 'is-loading' : ''}`}
-            >
-              Shorten it!
-            </a>
+      <div className="has-background-light">
+        <div className="container form-container">
+          <form onSubmit={handleSubmit} className="field is-grouped">
+            <div className="control is-expanded">
+              <input
+                placeholder="Shorten a link here..."
+                type="url"
+                name="url"
+                value={url}
+                onChange={handleChange}
+                className={`input is-medium ${error ? 'is-danger' : ''}`}
+              />
+              {error && <p class="help is-danger">Please enter valid URL</p>}
+            </div>
+            <div className="control">
+              <a
+                type="submit"
+                onClick={handleSubmit}
+                className={`button is-primary is-medium ${
+                  loading ? 'is-loading' : ''
+                }`}
+              >
+                Shorten it!
+              </a>
+            </div>
           </form>
 
-          <ul>
-            {list.map(({ url, hashid }, index) => (
-              <li key={index + 1} className="item">
-                {url} -
-                <a target="_blank" href={`https://rel.ink/${hashid}`}>
-                  https://rel.ink/{hashid}
-                </a>
-                <textarea
-                  id={'textarea-' + hashid}
-                  cols="4"
-                  rows="1"
-                  value={`https://rel.ink/${hashid}`}
-                  className="is-sr-only"
-                  readOnly
-                ></textarea>
-                <button
-                  id={'button-' + hashid}
-                  onClick={() => handleCopy(hashid)}
-                >
-                  Copy
-                </button>
-              </li>
-            ))}
-          </ul>
+          {list.map(({ url, hashid }, index) => (
+            <div
+              key={index + 1}
+              className="columns is-vcentered has-background-white px-4 py-4 my-4"
+            >
+              <div className="column">
+                <h4 className="is-size-4">{url}</h4>
+              </div>
+              <div className="column has-text-right">
+                <div>
+                  <a
+                    target="_blank"
+                    href={`https://rel.ink/${hashid}`}
+                    className="button is-text"
+                  >
+                    https://rel.ink/{hashid}
+                  </a>
 
-          {error && <p>Please enter valid url!</p>}
+                  <button
+                    id={'button-' + hashid}
+                    onClick={() => handleCopy(hashid)}
+                    className="button is-primary ml-4"
+                  >
+                    Copy
+                  </button>
+                  <textarea
+                    id={'textarea-' + hashid}
+                    cols="4"
+                    rows="1"
+                    value={`https://rel.ink/${hashid}`}
+                    className="is-sr-only"
+                    readOnly
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
     </>
   )
 }

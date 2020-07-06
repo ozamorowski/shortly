@@ -74,9 +74,9 @@ function Index() {
     }
   }
 
-  // TODO: remove item from list
-  const handleDelete = (index) => {
-    console.log('TODO: handle remove')
+  const handleDelete = (hashid) => {
+    const removed = list.filter((item) => item.hashid != hashid)
+    setList(removed)
   }
 
   return (
@@ -131,7 +131,7 @@ function Index() {
                 </button>
                 <button
                   className="delete is-invisible ml-3"
-                  onClick={() => handleDelete(index)}
+                  onClick={() => handleDelete(hashid)}
                 ></button>
                 <textarea
                   id={'textarea-' + hashid}

@@ -10,7 +10,7 @@ function Index() {
   const [url, setUrl] = useState('')
   const [list, setList] = useState(initialList)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(
     function setLocalStorage() {
@@ -27,21 +27,27 @@ function Index() {
       .then((response) => response.data)
       .catch((error) => {
         console.log(error.response.data)
-        setError(true)
+        setError('Please enter valid URL')
         setLoading(false)
       })
 
     if (result) {
-      // TODO: return if object already exist in list
-      setList([result, ...list])
-      setUrl('')
-      setLoading(false)
+      const duplicate = list.filter((l) => l.hashid === result.hashid)
+
+      if (!duplicate.length) {
+        setList([result, ...list])
+        setUrl('')
+        setLoading(false)
+      } else {
+        setLoading(false)
+        setError('Item already exist!')
+      }
     }
   }
 
   const handleChange = (e) => {
     setUrl(e.target.value)
-    setError(false)
+    setError('')
   }
 
   const handleCopy = (hashid) => {
@@ -88,9 +94,7 @@ function Index() {
                 onChange={handleChange}
                 className={`input is-medium ${error ? 'is-danger' : ''}`}
               />
-              {error && (
-                <p className="help is-danger">Please enter valid URL</p>
-              )}
+              {error && <p className="help is-danger">{error}</p>}
             </div>
             <div className="control">
               <a

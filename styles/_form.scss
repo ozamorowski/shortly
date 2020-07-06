@@ -1,0 +1,28 @@
+.form-container {
+  transform: translate(0, -4.3em);
+}
+
+form {
+  padding: 3em 4em;
+  border-radius: 10px;
+  background-image: url(../images/bg-shorten-desktop.svg);
+  background-color: $dark-violet;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .help {
+    position: fixed;
+  }
+}
+
+.results {
+  .is-flex.pull-right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &:hover .delete {
+    visibility: visible !important;
+  }
+}

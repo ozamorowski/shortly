@@ -23,8 +23,8 @@ function Index() {
     e.preventDefault()
     setLoading(true)
     const result = await axios
-      .post('https://rel.ink/api/links/', { url })
-      .then((response) => response.data)
+      .get('https://api.shrtco.de/v2/shorten?url=' + url)
+      .then((response) => response.data.result)
       .catch((error) => {
         console.log(error.response.data)
         setError('Please enter valid URL')
@@ -32,7 +32,7 @@ function Index() {
       })
 
     if (result) {
-      const duplicate = list.filter((l) => l.hashid === result.hashid)
+      const duplicate = list.filter((l) => l.code === result.code)
 
       if (!duplicate.length) {
         setList([result, ...list])
@@ -50,9 +50,9 @@ function Index() {
     setError('')
   }
 
-  const handleCopy = (hashid) => {
-    const textArea = document.getElementById('textarea-' + hashid)
-    const button = document.getElementById('button-' + hashid)
+  const handleCopy = (code) => {
+    const textArea = document.getElementById('textarea-' + code)
+    const button = document.getElementById('button-' + code)
     textArea.focus()
     textArea.select()
 
@@ -74,8 +74,8 @@ function Index() {
     }
   }
 
-  const handleDelete = (hashid) => {
-    const removed = list.filter((item) => item.hashid != hashid)
+  const handleDelete = (code) => {
+    const removed = list.filter((item) => item.code != code)
     setList(removed)
   }
 
@@ -109,35 +109,35 @@ function Index() {
             </div>
           </form>
 
-          {list.map(({ url, hashid }, index) => (
+          {list.map(({ original_link, short_link, code }, index) => (
             <div
               key={index + 1}
               className="results columns is-vcentered has-background-white px-4 py-4 my-4"
             >
               <div className="column">
-                <h4 className="is-size-4">{url}</h4>
+                <h4 className="is-size-4">{original_link}</h4>
               </div>
               <div className="column is-flex pull-right is-vcentered">
-                <a target="_blank" href={`https://rel.ink/${hashid}`}>
-                  https://rel.ink/{hashid}
+                <a target="_blank" href={short_link}>
+                  {short_link}
                 </a>
 
                 <button
-                  id={'button-' + hashid}
-                  onClick={() => handleCopy(hashid)}
+                  id={'button-' + code}
+                  onClick={() => handleCopy(code)}
                   className="button is-primary ml-4"
                 >
                   Copy
                 </button>
                 <button
                   className="delete is-invisible ml-3"
-                  onClick={() => handleDelete(hashid)}
+                  onClick={() => handleDelete(code)}
                 ></button>
                 <textarea
-                  id={'textarea-' + hashid}
+                  id={'textarea-' + code}
                   cols="4"
                   rows="1"
-                  value={`https://rel.ink/${hashid}`}
+                  value={short_link}
                   className="is-sr-only"
                   readOnly
                 ></textarea>

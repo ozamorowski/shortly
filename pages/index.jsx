@@ -4,6 +4,7 @@ import lscache from 'lscache'
 
 import Hero from '../components/Hero'
 import Statistics from '../components/Statistics'
+import GetStarted from '../components/GetStarted'
 
 const initialList = lscache.get('list') ? lscache.get('list') : []
 
@@ -148,6 +149,7 @@ function Index() {
         </div>
       </div>
       <Statistics />
+      <GetStarted />
     </>
   )
 }

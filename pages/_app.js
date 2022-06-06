@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Shortly - URL shortening app</title>
-        <meta property="og:title" content="Shortly - URL shortening app" key="title" />
+        <meta property="og:title" content="Shortly - URL shortening app" />
       </Head>
       <Header />
       <Component {...pageProps} />

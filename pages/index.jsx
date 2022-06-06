@@ -99,7 +99,7 @@ function Index() {
               {error && <p className="help is-danger">{error}</p>}
             </div>
             <div className="control">
-              <a
+              <button
                 type="submit"
                 onClick={handleSubmit}
                 className={`button is-primary is-medium ${
@@ -107,7 +107,7 @@ function Index() {
                 }`}
               >
                 Shorten it!
-              </a>
+              </button>
             </div>
           </form>
 

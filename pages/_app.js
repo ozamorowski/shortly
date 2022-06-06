@@ -7,7 +7,10 @@ import Footer from '../components/Footer'
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Head />
+      <Head>
+        <title>Shortly - URL shortening app</title>
+        <meta property="og:title" content="Shortly - URL shortening app" key="title" />
+      </Head>
       <Header />
       <Component {...pageProps} />
       <Footer />

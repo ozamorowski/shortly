@@ -111,41 +111,43 @@ function Index() {
             </div>
           </form>
 
-          {list.map(({ original_link, short_link, code }, index) => (
-            <div
-              key={index + 1}
-              className="results columns is-vcentered has-background-white px-4 py-4 my-4"
-            >
-              <div className="column">
-                <h4 className="is-size-4">{original_link}</h4>
-              </div>
-              <div className="column is-flex pull-right is-vcentered">
-                <a target="_blank" href={short_link}>
-                  {short_link}
-                </a>
+          {list.map(
+            ({ original_link, short_link, full_short_link, code }, index) => (
+              <div
+                key={index + 1}
+                className="results columns is-vcentered has-background-white px-4 py-4 my-4"
+              >
+                <div className="column">
+                  <h4 className="is-size-6">{original_link}</h4>
+                </div>
+                <div className="column is-flex pull-right is-vcentered">
+                  <a target="_blank" href={full_short_link}>
+                    {short_link}
+                  </a>
 
-                <button
-                  id={'button-' + code}
-                  onClick={() => handleCopy(code)}
-                  className="button is-primary ml-4"
-                >
-                  Copy
-                </button>
-                <button
-                  className="delete is-invisible ml-3"
-                  onClick={() => handleDelete(code)}
-                ></button>
-                <textarea
-                  id={'textarea-' + code}
-                  cols="4"
-                  rows="1"
-                  value={short_link}
-                  className="is-sr-only"
-                  readOnly
-                ></textarea>
+                  <button
+                    id={'button-' + code}
+                    onClick={() => handleCopy(code)}
+                    className="button is-primary ml-4"
+                  >
+                    Copy
+                  </button>
+                  <button
+                    className="delete is-invisible ml-3"
+                    onClick={() => handleDelete(code)}
+                  ></button>
+                  <textarea
+                    id={'textarea-' + code}
+                    cols="4"
+                    rows="1"
+                    value={full_short_link}
+                    className="is-sr-only"
+                    readOnly
+                  ></textarea>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
       <Statistics />

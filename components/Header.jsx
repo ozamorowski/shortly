@@ -4,7 +4,7 @@ const Header = () => {
   const [menuActive, setMenuActive] = useState(false)
 
   return (
-    <nav className="navbar py-4" role="navigation" aria-label="main navigation">
+    <nav className="navbar py-4" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
           <a className="navbar-item" href="./">

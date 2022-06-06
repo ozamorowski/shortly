@@ -1,0 +1,43 @@
+#statistics {
+  margin-top: -1rem;
+
+  .columns {
+    gap: 60px;
+
+    .column {
+      margin: 0 auto auto;
+      position: relative;
+      z-index: 2;
+
+      &:nth-child(2) {
+        margin-top: 3rem;
+      }
+
+      &:nth-child(3) {
+        margin-top: 6rem;
+      }
+
+      .icon {
+        position: absolute;
+        top: -50px;
+        background: $dark-violet;
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+
+    p {
+      font-size: 0.88rem;
+    }
+
+    .background {
+      width: 100%;
+      position: absolute;
+      top: 60%;
+      z-index: 1;
+      background: $cyan;
+      height: 10px;
+    }
+  }
+}

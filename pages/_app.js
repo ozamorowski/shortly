@@ -11,9 +11,11 @@ export default function MyApp({ Component, pageProps }) {
         <title>Shortly - URL shortening app</title>
         <meta property="og:title" content="Shortly - URL shortening app" />
       </Head>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <main>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </main>
     </>
   )
 }
